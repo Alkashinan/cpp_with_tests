@@ -48,7 +48,7 @@ void skipToChoices(int& currentDialogueIndex1, std::vector<std::string>& dialogu
     dialogue1.setString(dialogues1[currentDialogueIndex1]);
     sf::FloatRect textRect1 = dialogue1.getLocalBounds();
     dialogue1.setOrigin(textRect1.left + textRect1.width / 2.0f, textRect1.top + textRect1.height / 2.0f);
-    dialogue1.setPosition(sf::Vector2f(1920 / 2.0f, 940));
+    dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  // Adjusted for screen resolution 1280x720
     state = GameState::Choice;
 }
 
@@ -83,7 +83,7 @@ void handlePlayingState(const sf::Event& event, GameState& state, int& currentDi
                 dialogue1.setString(dialogues1[currentDialogueIndex1]);
                 sf::FloatRect textRect1 = dialogue1.getLocalBounds();
                 dialogue1.setOrigin(textRect1.left + textRect1.width / 2.0f, textRect1.top + textRect1.height / 2.0f);
-                dialogue1.setPosition(sf::Vector2f(1920 / 2.0f, 940));
+                dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  // Adjusted for screen resolution 1280x720
 
                 if (currentDialogueIndex1 == dialogues1.size() - 1) {
                     state = GameState::Choice;
@@ -213,10 +213,10 @@ void initButtons(sf::Text& startButton, sf::Text& settingsButton, sf::Text& save
     saveButton.setCharacterSize(24);
     quitButton.setCharacterSize(24);
 
-    startButton.setPosition(860, 450);
-    settingsButton.setPosition(860, 500);
-    saveButton.setPosition(860, 550);
-    quitButton.setPosition(860, 600);
+    startButton.setPosition(540, 300);     // Adjusted positions for screen resolution 1280x720
+    settingsButton.setPosition(540, 350);
+    saveButton.setPosition(540, 400);
+    quitButton.setPosition(540, 450);
 }
 
 // Initialize sliders for settings like volume and brightness
@@ -230,7 +230,7 @@ void initSlider(sf::RectangleShape& slider, sf::Vector2f size, sf::Color color, 
 void initChoiceBox(sf::RectangleShape& choiceBox) {
     choiceBox.setSize(sf::Vector2f(400, 150));
     choiceBox.setFillColor(sf::Color(0, 0, 0, 150));
-    choiceBox.setPosition(760, 450);
+    choiceBox.setPosition(440, 300);  // Adjusted for screen resolution 1280x720
 }
 
 // Play background music in the game
@@ -257,7 +257,7 @@ void drawCreditsState(sf::RenderWindow& window, sf::Text& creditsText) {
 
 // Main function to run the game
 int main() {
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Menu Example");
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Menu Example");  // Adjusted screen resolution to 1280x720
 
     sf::Font font;
     if (!font.loadFromFile("assets/Arial.ttf")) {
@@ -269,13 +269,17 @@ int main() {
 
     sf::RectangleShape menuBox(sf::Vector2f(400, 300));
     menuBox.setFillColor(sf::Color(0, 0, 0, 150));
-    menuBox.setPosition(760, 400);
+    menuBox.setPosition(440, 250);  // Adjusted for screen resolution 1280x720
 
     sf::Text saveProgressButton("SAVE PROGRESS", font, 24);
     sf::Text loadProgressButton("LOAD PROGRESS", font, 24);
 
-    saveProgressButton.setPosition(860, 450);
-    loadProgressButton.setPosition(860, 500);
+    saveProgressButton.setPosition(540, 300);  // Adjusted for screen resolution 1280x720
+    loadProgressButton.setPosition(540, 350);
+
+    // Change font color to black in the Save/Load state
+    saveProgressButton.setFillColor(sf::Color::Black);
+    loadProgressButton.setFillColor(sf::Color::Black);
 
     GameState state = GameState::Menu;
 
@@ -316,32 +320,32 @@ int main() {
     };
 
     sf::Text dialogue1(dialogues1[0], font, 24);
-    dialogue1.setPosition(960, 940);
+    dialogue1.setPosition(640, 660);  // Adjusted for screen resolution 1280x720
 
     sf::FloatRect textRect1 = dialogue1.getLocalBounds();
     dialogue1.setOrigin(textRect1.left + textRect1.width / 2.0f, textRect1.top + textRect1.height / 2.0f);
-    dialogue1.setPosition(sf::Vector2f(1920 / 2.0f, 940));
+    dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  // Adjusted for screen resolution 1280x720
 
     int currentDialogueIndex1 = 0;
     bool isCharacter1Speaking = true;
 
-    sf::RectangleShape dialogueBox(sf::Vector2f(1920, 150));
+    sf::RectangleShape dialogueBox(sf::Vector2f(1280, 100));  // Adjusted for screen resolution 1280x720
     dialogueBox.setFillColor(sf::Color(0, 0, 0, 150));
-    dialogueBox.setPosition(0, 900);
+    dialogueBox.setPosition(0, 620);  // Adjusted for screen resolution 1280x720
 
     sf::Music music;
     playMusic(music);
 
     sf::RectangleShape volumeSlider, brightnessSlider, volumeKnob, brightnessKnob;
-    initSlider(volumeSlider, sf::Vector2f(200, 10), sf::Color::White, sf::Vector2f(860, 500));
-    initSlider(brightnessSlider, sf::Vector2f(200, 10), sf::Color::White, sf::Vector2f(860, 600));
-    initSlider(volumeKnob, sf::Vector2f(10, 30), sf::Color::Red, sf::Vector2f(860 + music.getVolume() * 2, 485));
-    initSlider(brightnessKnob, sf::Vector2f(10, 30), sf::Color::Red, sf::Vector2f(860 + 100, 585));
+    initSlider(volumeSlider, sf::Vector2f(200, 10), sf::Color::White, sf::Vector2f(540, 400));  // Adjusted for screen resolution 1280x720
+    initSlider(brightnessSlider, sf::Vector2f(200, 10), sf::Color::White, sf::Vector2f(540, 450));
+    initSlider(volumeKnob, sf::Vector2f(10, 30), sf::Color::Red, sf::Vector2f(540 + music.getVolume() * 2, 385));  // Adjusted for screen resolution 1280x720
+    initSlider(brightnessKnob, sf::Vector2f(10, 30), sf::Color::Red, sf::Vector2f(540 + 100, 435));
 
     sf::Text choice1("Take a Breakfast?", font, 24);
     sf::Text choice2("Don't breakfast.", font, 24);
-    choice1.setPosition(860, 500);
-    choice2.setPosition(860, 550);
+    choice1.setPosition(540, 300);  // Adjusted for screen resolution 1280x720
+    choice2.setPosition(540, 350);
 
     sf::RectangleShape choiceBox;
     initChoiceBox(choiceBox);
@@ -353,7 +357,7 @@ int main() {
 
     // Credits text initialization
     sf::Text creditsText("Game developed by XYZ Team\nSpecial thanks to the OpenAI community for support.", font, 30);
-    creditsText.setPosition(800, 500);
+    creditsText.setPosition(400, 350);  // Adjusted for screen resolution 1280x720
 
     while (window.isOpen()) {
         sf::Event event;
