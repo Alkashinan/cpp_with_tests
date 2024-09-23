@@ -16,19 +16,18 @@ enum class GameState {
     Credits
 };
 
-// Structure to handle dialogue options and transitions
+
 struct DialogueOption {
     std::string text;
     std::vector<std::string> nextDialogues;
 };
 
-// Save the current game progress to a file
 
 void saveProgress(int dialogueIndex1, bool isCharacter1Speaking) {
     std::string saveDirectory = "saves";
     std::string saveFilePath = saveDirectory + "/mysave.txt";
 
-    // Создаем директорию, если она не существует
+  
     if (!std::filesystem::exists(saveDirectory)) {
         if (!std::filesystem::create_directories(saveDirectory)) {
             std::cerr << "Error: Failed to create directory " << saveDirectory << std::endl;
@@ -38,7 +37,7 @@ void saveProgress(int dialogueIndex1, bool isCharacter1Speaking) {
         }
     }
 
-    // Проверяем, существует ли директория
+    
     if (std::filesystem::exists(saveDirectory)) {
         std::cout << "Directory exists: " << saveDirectory << std::endl;
     } else {
@@ -46,7 +45,7 @@ void saveProgress(int dialogueIndex1, bool isCharacter1Speaking) {
         return;
     }
 
-    // Открываем файл для записи
+   
     std::ofstream saveFile(saveFilePath);
     if (saveFile.is_open()) {
         saveFile << dialogueIndex1 << "\n" << isCharacter1Speaking << "\n";
@@ -58,24 +57,24 @@ void saveProgress(int dialogueIndex1, bool isCharacter1Speaking) {
 }
 
 void loadProgress( int& dialogueIndex1, bool& isCharacter1Speaking ) {
-    std::ifstream loadFile( "./saves/mysave.txt" ); // ��������� ���� ��� ������
-    if ( loadFile.is_open() ) { // ���� ���� ������
-        loadFile >> dialogueIndex1; // ������ ������ �������� �������
-        loadFile >> isCharacter1Speaking; // ������ ���� ���������� ���������
-        loadFile.close(); // ��������� ����
+    std::ifstream loadFile( "./saves/mysave.txt" ); // 
+    if ( loadFile.is_open() ) {
+        loadFile >> dialogueIndex1; 
+        loadFile >> isCharacter1Speaking; 
+        loadFile.close(); 
     }
 }
-// Skip to the choice section in the dialogues
+
 void skipToChoices(int& currentDialogueIndex1, std::vector<std::string>& dialogues1, GameState& state, sf::Text& dialogue1) {
     currentDialogueIndex1 = dialogues1.size() - 1;
     dialogue1.setString(dialogues1[currentDialogueIndex1]);
     sf::FloatRect textRect1 = dialogue1.getLocalBounds();
     dialogue1.setOrigin(textRect1.left + textRect1.width / 2.0f, textRect1.top + textRect1.height / 2.0f);
-    dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  // Adjusted for screen resolution 1280x720
+    dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  
     state = GameState::Choice;
 }
 
-// Handle user input when in the Menu state
+
 void handleMenuState(const sf::Event& event, GameState& state, sf::RenderWindow& window, sf::Text& startButton, sf::Text& settingsButton, sf::Text& saveButton, sf::Text& quitButton) {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -91,7 +90,7 @@ void handleMenuState(const sf::Event& event, GameState& state, sf::RenderWindow&
     }
 }
 
-// Handle user input when in the Playing state
+
 void handlePlayingState(const sf::Event& event, GameState& state, int& currentDialogueIndex1, std::vector<std::string>& dialogues1, sf::Text& dialogue1, bool& isCharacter1Speaking) {
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Escape) {
@@ -106,7 +105,7 @@ void handlePlayingState(const sf::Event& event, GameState& state, int& currentDi
                 dialogue1.setString(dialogues1[currentDialogueIndex1]);
                 sf::FloatRect textRect1 = dialogue1.getLocalBounds();
                 dialogue1.setOrigin(textRect1.left + textRect1.width / 2.0f, textRect1.top + textRect1.height / 2.0f);
-                dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  // Adjusted for screen resolution 1280x720
+                dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  
 
                 if (currentDialogueIndex1 == dialogues1.size() - 1) {
                     state = GameState::Choice;
@@ -117,7 +116,7 @@ void handlePlayingState(const sf::Event& event, GameState& state, int& currentDi
     }
 }
 
-// Handle user input when in the Settings state
+
 void handleSettingsState(const sf::Event& event, GameState& state, sf::RenderWindow& window, sf::Music& music, sf::RectangleShape& volumeSlider, sf::RectangleShape& brightnessSlider, sf::RectangleShape& volumeKnob, sf::RectangleShape& brightnessKnob, sf::Sprite& gameBackground) {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -140,7 +139,7 @@ void handleSettingsState(const sf::Event& event, GameState& state, sf::RenderWin
     }
 }
 
-// Handle user input when in the Choice state
+
 void handleChoiceState(const sf::Event& event, GameState& state, sf::RenderWindow& window, sf::Text& choice1, sf::Text& choice2, std::vector<std::string>& dialogues1, std::vector<DialogueOption>& choices, int& currentDialogueIndex1, sf::Text& dialogue1, bool& isCharacter1Speaking) {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -160,7 +159,7 @@ void handleChoiceState(const sf::Event& event, GameState& state, sf::RenderWindo
     }
 }
 
-// Handle user input when in the Save/Load state
+
 void handleSaveLoadState(const sf::Event& event, GameState& state, sf::RenderWindow& window, sf::Text& saveProgressButton, sf::Text& loadProgressButton, int& currentDialogueIndex1, bool& isCharacter1Speaking, std::vector<std::string>& dialogues1, sf::Text& dialogue1) {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -176,7 +175,7 @@ void handleSaveLoadState(const sf::Event& event, GameState& state, sf::RenderWin
     }
 }
 
-// Draw elements for the Menu state
+
 void drawMenuState(sf::RenderWindow& window, sf::Sprite& menuBackground, sf::RectangleShape& menuBox, sf::Text& startButton, sf::Text& settingsButton, sf::Text& saveButton, sf::Text& quitButton) {
     window.draw(menuBackground);
     window.draw(menuBox);
@@ -186,14 +185,14 @@ void drawMenuState(sf::RenderWindow& window, sf::Sprite& menuBackground, sf::Rec
     window.draw(quitButton);
 }
 
-// Draw elements for the Playing state
+
 void drawPlayingState(sf::RenderWindow& window, sf::Sprite& gameBackground, sf::RectangleShape& dialogueBox, sf::Text& dialogue1) {
     window.draw(gameBackground);
     window.draw(dialogueBox);
     window.draw(dialogue1);
 }
 
-// Draw elements for the Settings state
+
 void drawSettingsState(sf::RenderWindow& window, sf::Sprite& gameBackground, sf::RectangleShape& dialogueBox, sf::RectangleShape& volumeSlider, sf::RectangleShape& volumeKnob, sf::RectangleShape& brightnessSlider, sf::RectangleShape& brightnessKnob) {
     window.draw(gameBackground);
     window.draw(dialogueBox);
@@ -203,7 +202,7 @@ void drawSettingsState(sf::RenderWindow& window, sf::Sprite& gameBackground, sf:
     window.draw(brightnessKnob);
 }
 
-// Draw elements for the Save/Load state
+
 void drawSaveLoadState(sf::RenderWindow& window, sf::Sprite& gameBackground, sf::RectangleShape& dialogueBox, sf::Text& saveProgressButton, sf::Text& loadProgressButton) {
     window.draw(gameBackground);
     window.draw(dialogueBox);
@@ -211,7 +210,7 @@ void drawSaveLoadState(sf::RenderWindow& window, sf::Sprite& gameBackground, sf:
     window.draw(loadProgressButton);
 }
 
-// Draw elements for the Choice state
+
 void drawChoiceState(sf::RenderWindow& window, sf::Sprite& gameBackground, sf::RectangleShape& choiceBox, sf::Text& choice1, sf::Text& choice2) {
     window.draw(gameBackground);
     window.draw(choiceBox);
@@ -219,7 +218,7 @@ void drawChoiceState(sf::RenderWindow& window, sf::Sprite& gameBackground, sf::R
     window.draw(choice2);
 }
 
-// Initialize buttons with font, position, and text
+
 void initButtons(sf::Text& startButton, sf::Text& settingsButton, sf::Text& saveButton, sf::Text& quitButton, sf::Font& font) {
     startButton.setFont(font);
     settingsButton.setFont(font);
@@ -236,27 +235,27 @@ void initButtons(sf::Text& startButton, sf::Text& settingsButton, sf::Text& save
     saveButton.setCharacterSize(24);
     quitButton.setCharacterSize(24);
 
-    startButton.setPosition(540, 300);     // Adjusted positions for screen resolution 1280x720
+    startButton.setPosition(540, 300);    
     settingsButton.setPosition(540, 350);
     saveButton.setPosition(540, 400);
     quitButton.setPosition(540, 450);
 }
 
-// Initialize sliders for settings like volume and brightness
+
 void initSlider(sf::RectangleShape& slider, sf::Vector2f size, sf::Color color, sf::Vector2f position) {
     slider.setSize(size);
     slider.setFillColor(color);
     slider.setPosition(position);
 }
 
-// Initialize the choice box used in dialogues
+
 void initChoiceBox(sf::RectangleShape& choiceBox) {
     choiceBox.setSize(sf::Vector2f(400, 150));
     choiceBox.setFillColor(sf::Color(0, 0, 0, 150));
-    choiceBox.setPosition(440, 300);  // Adjusted for screen resolution 1280x720
+    choiceBox.setPosition(440, 300);  
 }
 
-// Play background music in the game
+
 void playMusic(sf::Music& music) {
     if (!music.openFromFile("../assets/01.Hollywood.mp3")) {
         return;
@@ -265,14 +264,14 @@ void playMusic(sf::Music& music) {
     music.play();
 }
 
-// Function to handle credits state
+
 void handleCreditsState(const sf::Event& event, GameState& state) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
         state = GameState::Menu;
     }
 }
 
-// Function to draw credits screen
+
 void drawCreditsState(sf::RenderWindow& window, sf::Text& creditsText) {
     window.clear(sf::Color::Black);
     window.draw(creditsText);
