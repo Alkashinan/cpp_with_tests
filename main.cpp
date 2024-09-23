@@ -7,10 +7,9 @@
 
 #include "functions/func.h"
 
-// Define different states of the game
-// Main function to run the game
+
 int main() {
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Menu Example");  // Adjusted screen resolution to 1280x720
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Menu Example");  /
 
     sf::Font font;
     if (!font.loadFromFile("../assets/Arial.ttf")) {
@@ -22,15 +21,14 @@ int main() {
 
     sf::RectangleShape menuBox(sf::Vector2f(400, 300));
     menuBox.setFillColor(sf::Color(0, 0, 0, 150));
-    menuBox.setPosition(440, 250);  // Adjusted for screen resolution 1280x720
-
+    menuBox.setPosition(440, 250);  
     sf::Text saveProgressButton("SAVE PROGRESS", font, 24);
     sf::Text loadProgressButton("LOAD PROGRESS", font, 24);
 
-    saveProgressButton.setPosition(540, 300);  // Adjusted for screen resolution 1280x720
+    saveProgressButton.setPosition(540, 300);  
     loadProgressButton.setPosition(540, 350);
 
-    // Change font color to black in the Save/Load state
+   
     saveProgressButton.setFillColor(sf::Color::Black);
     loadProgressButton.setFillColor(sf::Color::Black);
 
@@ -50,54 +48,53 @@ int main() {
 
     std::vector<std::string> dialogues1 = {
         "Zvvvv, Zvvvvv",
-        "GG: �What?...�",
+        "GG: What?...",
         "The alarm clock woke me up on a hot spring day",
-        "GG: �Aah, shut up�",
+        "GG: Aah, shut up",
         "I rejected the call, thinking it was an alarm clock",
         "Zvvvv, Zvvvvv",
         "I sat up and picked up the ringing phone.",
         "GG: the headman?",
         "I swiped the green handset to the right and held the phone to my ear.",
         "GG: `Hello?..''",
-        "The headman: �where the hell are you, today is the last day of retaking the matanalysis, or do you want to fly out of the HSE like a cork out of a bottle?!�",
+        "The headman: where the hell are you, today is the last day of retaking the matanalysis, or do you want to fly out of the HSE like a cork out of a bottle?!",
         "Masha is as usual in her repertoire.",
         "Almost screams, why is she so worried about the whole group?",
         "Her voice was so high and loud that my ears curled up into a tube.",
-        "GG: �I'll come, I just prepared all night, I almost overslept because of it.�",
+        "GG: I'll come, I just prepared all night, I almost overslept because of it.",
         "It's good that I hardly communicate with my classmates and no one will turn me in, saying that I played Dota all night.",
-        "Headman Masha: �it's good that I was preparing, otherwise I'm already ashamed of our group, 8 people at the retake, this is wrong.�",
+        "Headman Masha: it's good that I was preparing, otherwise I'm already ashamed of our group, 8 people at the retake, this is wrong.",
         "Her words make sense ... But I'd rather keep silent about her transfer in English",
-        "GG: �Come on, I'm getting dressed and going out.",
+        "GG: Come on, I'm getting dressed and going out.",
         "I started to get dressed quickly, but my stomach rumbled.",
-        "GG: �Damn, I need to have breakfast, although I may be late�"
+        "GG: Damn, I need to have breakfast, although I may be late"
     };
 
     sf::Text dialogue1(dialogues1[0], font, 24);
-    dialogue1.setPosition(640, 660);  // Adjusted for screen resolution 1280x720
-
+    dialogue1.setPosition(640, 660);  
     sf::FloatRect textRect1 = dialogue1.getLocalBounds();
     dialogue1.setOrigin(textRect1.left + textRect1.width / 2.0f, textRect1.top + textRect1.height / 2.0f);
-    dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  // Adjusted for screen resolution 1280x720
-
+    dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  
+    
     int currentDialogueIndex1 = 0;
     bool isCharacter1Speaking = true;
 
-    sf::RectangleShape dialogueBox(sf::Vector2f(1280, 100));  // Adjusted for screen resolution 1280x720
+    sf::RectangleShape dialogueBox(sf::Vector2f(1280, 100));  
     dialogueBox.setFillColor(sf::Color(0, 0, 0, 150));
-    dialogueBox.setPosition(0, 620);  // Adjusted for screen resolution 1280x720
+    dialogueBox.setPosition(0, 620);  
 
     sf::Music music;
     playMusic(music);
 
     sf::RectangleShape volumeSlider, brightnessSlider, volumeKnob, brightnessKnob;
-    initSlider(volumeSlider, sf::Vector2f(200, 10), sf::Color::White, sf::Vector2f(540, 400));  // Adjusted for screen resolution 1280x720
+    initSlider(volumeSlider, sf::Vector2f(200, 10), sf::Color::White, sf::Vector2f(540, 400));  
     initSlider(brightnessSlider, sf::Vector2f(200, 10), sf::Color::White, sf::Vector2f(540, 450));
-    initSlider(volumeKnob, sf::Vector2f(10, 30), sf::Color::Red, sf::Vector2f(540 + music.getVolume() * 2, 385));  // Adjusted for screen resolution 1280x720
+    initSlider(volumeKnob, sf::Vector2f(10, 30), sf::Color::Red, sf::Vector2f(540 + music.getVolume() * 2, 385));  
     initSlider(brightnessKnob, sf::Vector2f(10, 30), sf::Color::Red, sf::Vector2f(540 + 100, 435));
 
     sf::Text choice1("Take a Breakfast?", font, 24);
     sf::Text choice2("Don't breakfast.", font, 24);
-    choice1.setPosition(540, 300);  // Adjusted for screen resolution 1280x720
+    choice1.setPosition(540, 300);  
     choice2.setPosition(540, 350);
 
     sf::RectangleShape choiceBox;
@@ -108,9 +105,9 @@ int main() {
         {"Don't breakfast.", {"GG: �no, I won't eat, otherwise I'll be late�", "I got dressed quickly and ran to the streets.", "I opened the entrance door", "The sun is shining brightly in my eyes.", "It's so bright that I would love to go to the beach right now.", "I open my phone to look at the bus and commuter train schedules"}}
     };
 
-    // Credits text initialization
+
     sf::Text creditsText("Game developed by XYZ Team\nSpecial thanks to the OpenAI community for support.", font, 30);
-    creditsText.setPosition(400, 350);  // Adjusted for screen resolution 1280x720
+    creditsText.setPosition(400, 350); 
 
     while (window.isOpen()) {
         sf::Event event;
