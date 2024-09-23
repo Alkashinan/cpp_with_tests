@@ -1,0 +1,48 @@
+\doxysection{func.\+h}
+\hypertarget{func_8h_source}{}\label{func_8h_source}\index{functions/func.h@{functions/func.h}}
+\mbox{\hyperlink{func_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SFML/Audio.hpp>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{func_8cpp}{func.cpp}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Функции\ для\ сохранения\ и\ загрузки\ прогресса\ игры}}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a39bad784c4dc3ed32c06a105f9d71568}{saveProgress}}(\textcolor{keywordtype}{int}\ dialogueIndex1,\ \textcolor{keywordtype}{bool}\ isCharacter1Speaking);}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a3d15916d82e57beaf2ecbfd3f81ba37c}{loadProgress}}(\textcolor{keywordtype}{int}\&\ dialogueIndex1,\ \textcolor{keywordtype}{bool}\&\ isCharacter1Speaking);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Функция\ для\ перехода\ к\ выбору\ опций\ диалога}}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a76c77530f7904ea21e57d5d3699c0c12}{skipToChoices}}(\textcolor{keywordtype}{int}\&\ currentDialogueIndex1,\ std::vector<std::string>\&\ dialogues1,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\&\ state,\ sf::Text\&\ dialogue1);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Функции\ для\ обработки\ ввода\ пользователя\ в\ различных\ состояниях\ игры}}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a17cca03ae96245c5b783dcdaaaaef1d5}{handleMenuState}}(\textcolor{keyword}{const}\ sf::Event\&\ event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\&\ state,\ sf::RenderWindow\&\ window,\ sf::Text\&\ startButton,\ sf::Text\&\ settingsButton,\ sf::Text\&\ saveButton,\ sf::Text\&\ quitButton);}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a8c7b6eebaf214a3d1a8ad1fdd430ffb6}{handlePlayingState}}(\textcolor{keyword}{const}\ sf::Event\&\ event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\&\ state,\ \textcolor{keywordtype}{int}\&\ currentDialogueIndex1,\ std::vector<std::string>\&\ dialogues1,\ sf::Text\&\ dialogue1,\ \textcolor{keywordtype}{bool}\&\ isCharacter1Speaking);}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_ae6d85c0106e4103aa8da744d6e5f68c7}{handleSettingsState}}(\textcolor{keyword}{const}\ sf::Event\&\ event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\&\ state,\ sf::RenderWindow\&\ window,\ sf::Music\&\ music,\ sf::RectangleShape\&\ volumeSlider,\ sf::RectangleShape\&\ brightnessSlider,\ sf::RectangleShape\&\ volumeKnob,\ sf::RectangleShape\&\ brightnessKnob,\ sf::Sprite\&\ gameBackground);}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a6e4961dc5a9a6df2c93d3a8e271b520c}{handleChoiceState}}(\textcolor{keyword}{const}\ sf::Event\&\ event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\&\ state,\ sf::RenderWindow\&\ window,\ sf::Text\&\ choice1,\ sf::Text\&\ choice2,\ std::vector<std::string>\&\ dialogues1,\ std::vector<DialogueOption>\&\ choices,\ \textcolor{keywordtype}{int}\&\ currentDialogueIndex1,\ sf::Text\&\ dialogue1,\ \textcolor{keywordtype}{bool}\&\ isCharacter1Speaking);}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_aca4024e74f584ab8391de464820e3fda}{handleSaveLoadState}}(\textcolor{keyword}{const}\ sf::Event\&\ event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\&\ state,\ sf::RenderWindow\&\ window,\ sf::Text\&\ saveProgressButton,\ sf::Text\&\ loadProgressButton,\ \textcolor{keywordtype}{int}\&\ currentDialogueIndex1,\ \textcolor{keywordtype}{bool}\&\ isCharacter1Speaking,\ std::vector<std::string>\&\ dialogues1,\ sf::Text\&\ dialogue1);}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_ada6aa92039d860a0c3988754dd8fcf9a}{handleCreditsState}}(\textcolor{keyword}{const}\ sf::Event\&\ event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\&\ state);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ Функции\ для\ отображения\ элементов\ интерфейса\ в\ различных\ состояниях\ игры}}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_acef3e820ce15591f18f0f150b2490a05}{drawMenuState}}(sf::RenderWindow\&\ window,\ sf::Sprite\&\ menuBackground,\ sf::RectangleShape\&\ menuBox,\ sf::Text\&\ startButton,\ sf::Text\&\ settingsButton,\ sf::Text\&\ saveButton,\ sf::Text\&\ quitButton);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_aa289a5b051f059d7c156efab747fbcf0}{drawPlayingState}}(sf::RenderWindow\&\ window,\ sf::Sprite\&\ gameBackground,\ sf::RectangleShape\&\ dialogueBox,\ sf::Text\&\ dialogue1);}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_ab28c3db5a2375de9b85a309371742097}{drawSettingsState}}(sf::RenderWindow\&\ window,\ sf::Sprite\&\ gameBackground,\ sf::RectangleShape\&\ dialogueBox,\ sf::RectangleShape\&\ volumeSlider,\ sf::RectangleShape\&\ volumeKnob,\ sf::RectangleShape\&\ brightnessSlider,\ sf::RectangleShape\&\ brightnessKnob);}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a5d8f72ec5307c6ed7edb7ab56a4e3a78}{drawSaveLoadState}}(sf::RenderWindow\&\ window,\ sf::Sprite\&\ gameBackground,\ sf::RectangleShape\&\ dialogueBox,\ sf::Text\&\ saveProgressButton,\ sf::Text\&\ loadProgressButton);}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a7fd8be2b5a0e54761943be8fa5a91563}{drawChoiceState}}(sf::RenderWindow\&\ window,\ sf::Sprite\&\ gameBackground,\ sf::RectangleShape\&\ choiceBox,\ sf::Text\&\ choice1,\ sf::Text\&\ choice2);}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a4cfa3d0c447ffa7d8bc77f7343fe210b}{drawCreditsState}}(sf::RenderWindow\&\ window,\ sf::Text\&\ creditsText);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Функции\ для\ инициализации\ различных\ элементов\ интерфейса}}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_ab416ae7d6f93cf5ef69257adb105bbf7}{initButtons}}(sf::Text\&\ startButton,\ sf::Text\&\ settingsButton,\ sf::Text\&\ saveButton,\ sf::Text\&\ quitButton,\ sf::Font\&\ font);}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_ae4e80688935a6a2eb1728195c47e3fa2}{initSlider}}(sf::RectangleShape\&\ slider,\ sf::Vector2f\ size,\ sf::Color\ color,\ sf::Vector2f\ position);}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a4dad2bdffed089c19a4469dc281606ec}{initChoiceBox}}(sf::RectangleShape\&\ choiceBox);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ Функция\ для\ воспроизведения\ фоновой\ музыки}}
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8h_a550eab30b939455b9b21b966dfe8d040}{playMusic}}(sf::Music\&\ music);}
+\DoxyCodeLine{00042\ }
+
+\end{DoxyCode}

@@ -32,7 +32,6 @@ set( INC
 add_subdirectory(tests)
 add_subdirectory(functions)
 
-enable_testing()
 
 set( CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/SFML_${SFML_COMPILER_TYPE}" )
 find_package( SFML 2.6.1 REQUIRED network audio graphics window system )

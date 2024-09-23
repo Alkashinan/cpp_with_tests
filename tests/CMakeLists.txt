@@ -2,10 +2,10 @@
 cmake_minimum_required(VERSION 3.10)
 project(save_test)
 
-set(SFML_DIR "path/to/your/sfml/cmake/module")
-
 find_package(SFML 2.5 COMPONENTS graphics audio window system REQUIRED)
 
+
+enable_testing()
 
 add_executable(save_test savetest.cpp)
 
@@ -22,3 +22,8 @@ target_link_libraries(save_test ${GTEST_LIBRARIES} pthread)
 
 include_directories(${SFML_INCLUDE_DIR})
 target_link_libraries(save_test ${SFML_LIBRARIES})
+
+add_test(SavesCorrectData save_test)
+add_test(LoadsCorrectData save_test)
+add_test(HandlesFileNotFoundError save_test)
+add_test(SkipsToChoicesState save_test)

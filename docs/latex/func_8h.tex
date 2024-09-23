@@ -1,0 +1,321 @@
+\doxysection{functions/func.h File Reference}
+\hypertarget{func_8h}{}\label{func_8h}\index{functions/func.h@{functions/func.h}}
+{\ttfamily \#include $<$SFML/\+Audio.\+hpp$>$}\newline
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}func.\+cpp"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{func_8h_a39bad784c4dc3ed32c06a105f9d71568}{save\+Progress}} (int dialogue\+Index1, bool is\+Character1\+Speaking)
+\begin{DoxyCompactList}\small\item\em save\+Progress -\/ функция для сохранения состояния игры \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8h_a3d15916d82e57beaf2ecbfd3f81ba37c}{load\+Progress}} (int \&dialogue\+Index1, bool \&is\+Character1\+Speaking)
+\begin{DoxyCompactList}\small\item\em load\+Progress -\/ функция для прогружения состояния игры \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8h_a76c77530f7904ea21e57d5d3699c0c12}{skip\+To\+Choices}} (int \&current\+Dialogue\+Index1, std\+::vector$<$ std\+::string $>$ \&dialogues1, \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&state, sf\+::\+Text \&dialogue1)
+\begin{DoxyCompactList}\small\item\em skip\+To\+Choices -\/ функция для пропуска диалога до стадии выбора \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8h_a17cca03ae96245c5b783dcdaaaaef1d5}{handle\+Menu\+State}} (const sf\+::\+Event \&event, \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&state, sf\+::\+Render\+Window \&window, sf\+::\+Text \&start\+Button, sf\+::\+Text \&settings\+Button, sf\+::\+Text \&save\+Button, sf\+::\+Text \&quit\+Button)
+\begin{DoxyCompactList}\small\item\em handle\+Menu\+State -\/ функция для отображения меню \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8h_a8c7b6eebaf214a3d1a8ad1fdd430ffb6}{handle\+Playing\+State}} (const sf\+::\+Event \&event, \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&state, int \&current\+Dialogue\+Index1, std\+::vector$<$ std\+::string $>$ \&dialogues1, sf\+::\+Text \&dialogue1, bool \&is\+Character1\+Speaking)
+\begin{DoxyCompactList}\small\item\em handle\+Playing\+State -\/ функция для отображения игры \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8h_ae6d85c0106e4103aa8da744d6e5f68c7}{handle\+Settings\+State}} (const sf\+::\+Event \&event, \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&state, sf\+::\+Render\+Window \&window, sf\+::\+Music \&music, sf\+::\+Rectangle\+Shape \&volume\+Slider, sf\+::\+Rectangle\+Shape \&brightness\+Slider, sf\+::\+Rectangle\+Shape \&volume\+Knob, sf\+::\+Rectangle\+Shape \&brightness\+Knob, sf\+::\+Sprite \&game\+Background)
+\begin{DoxyCompactList}\small\item\em handle\+Settings\+State -\/ функция для отображения настроек \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8h_a6e4961dc5a9a6df2c93d3a8e271b520c}{handle\+Choice\+State}} (const sf\+::\+Event \&event, \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&state, sf\+::\+Render\+Window \&window, sf\+::\+Text \&choice1, sf\+::\+Text \&choice2, std\+::vector$<$ std\+::string $>$ \&dialogues1, std\+::vector$<$ \mbox{\hyperlink{structDialogueOption}{Dialogue\+Option}} $>$ \&choices, int \&current\+Dialogue\+Index1, sf\+::\+Text \&dialogue1, bool \&is\+Character1\+Speaking)
+\begin{DoxyCompactList}\small\item\em handle\+Choice\+State -\/ функция для отображения выбора \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8h_aca4024e74f584ab8391de464820e3fda}{handle\+Save\+Load\+State}} (const sf\+::\+Event \&event, \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&state, sf\+::\+Render\+Window \&window, sf\+::\+Text \&save\+Progress\+Button, sf\+::\+Text \&load\+Progress\+Button, int \&current\+Dialogue\+Index1, bool \&is\+Character1\+Speaking, std\+::vector$<$ std\+::string $>$ \&dialogues1, sf\+::\+Text \&dialogue1)
+\begin{DoxyCompactList}\small\item\em handle\+Save\+Load\+State -\/ функция для отображения меню сохранений \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8h_ada6aa92039d860a0c3988754dd8fcf9a}{handle\+Credits\+State}} (const sf\+::\+Event \&event, \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&state)
+\item 
+void \mbox{\hyperlink{func_8h_acef3e820ce15591f18f0f150b2490a05}{draw\+Menu\+State}} (sf\+::\+Render\+Window \&window, sf\+::\+Sprite \&menu\+Background, sf\+::\+Rectangle\+Shape \&menu\+Box, sf\+::\+Text \&start\+Button, sf\+::\+Text \&settings\+Button, sf\+::\+Text \&save\+Button, sf\+::\+Text \&quit\+Button)
+\item 
+void \mbox{\hyperlink{func_8h_aa289a5b051f059d7c156efab747fbcf0}{draw\+Playing\+State}} (sf\+::\+Render\+Window \&window, sf\+::\+Sprite \&game\+Background, sf\+::\+Rectangle\+Shape \&dialogue\+Box, sf\+::\+Text \&dialogue1)
+\item 
+void \mbox{\hyperlink{func_8h_ab28c3db5a2375de9b85a309371742097}{draw\+Settings\+State}} (sf\+::\+Render\+Window \&window, sf\+::\+Sprite \&game\+Background, sf\+::\+Rectangle\+Shape \&dialogue\+Box, sf\+::\+Rectangle\+Shape \&volume\+Slider, sf\+::\+Rectangle\+Shape \&volume\+Knob, sf\+::\+Rectangle\+Shape \&brightness\+Slider, sf\+::\+Rectangle\+Shape \&brightness\+Knob)
+\item 
+void \mbox{\hyperlink{func_8h_a5d8f72ec5307c6ed7edb7ab56a4e3a78}{draw\+Save\+Load\+State}} (sf\+::\+Render\+Window \&window, sf\+::\+Sprite \&game\+Background, sf\+::\+Rectangle\+Shape \&dialogue\+Box, sf\+::\+Text \&save\+Progress\+Button, sf\+::\+Text \&load\+Progress\+Button)
+\item 
+void \mbox{\hyperlink{func_8h_a7fd8be2b5a0e54761943be8fa5a91563}{draw\+Choice\+State}} (sf\+::\+Render\+Window \&window, sf\+::\+Sprite \&game\+Background, sf\+::\+Rectangle\+Shape \&choice\+Box, sf\+::\+Text \&choice1, sf\+::\+Text \&choice2)
+\item 
+void \mbox{\hyperlink{func_8h_a4cfa3d0c447ffa7d8bc77f7343fe210b}{draw\+Credits\+State}} (sf\+::\+Render\+Window \&window, sf\+::\+Text \&credits\+Text)
+\item 
+void \mbox{\hyperlink{func_8h_ab416ae7d6f93cf5ef69257adb105bbf7}{init\+Buttons}} (sf\+::\+Text \&start\+Button, sf\+::\+Text \&settings\+Button, sf\+::\+Text \&save\+Button, sf\+::\+Text \&quit\+Button, sf\+::\+Font \&font)
+\item 
+void \mbox{\hyperlink{func_8h_ae4e80688935a6a2eb1728195c47e3fa2}{init\+Slider}} (sf\+::\+Rectangle\+Shape \&slider, sf\+::\+Vector2f size, sf\+::\+Color color, sf\+::\+Vector2f position)
+\item 
+void \mbox{\hyperlink{func_8h_a4dad2bdffed089c19a4469dc281606ec}{init\+Choice\+Box}} (sf\+::\+Rectangle\+Shape \&choice\+Box)
+\item 
+void \mbox{\hyperlink{func_8h_a550eab30b939455b9b21b966dfe8d040}{play\+Music}} (sf\+::\+Music \&music)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{func_8h_a7fd8be2b5a0e54761943be8fa5a91563}\index{func.h@{func.h}!drawChoiceState@{drawChoiceState}}
+\index{drawChoiceState@{drawChoiceState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{drawChoiceState()}{drawChoiceState()}}
+{\footnotesize\ttfamily \label{func_8h_a7fd8be2b5a0e54761943be8fa5a91563} 
+void draw\+Choice\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Sprite \&}]{game\+Background}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{choice\+Box}{, }\item[{sf\+::\+Text \&}]{choice1}{, }\item[{sf\+::\+Text \&}]{choice2}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_a4cfa3d0c447ffa7d8bc77f7343fe210b}\index{func.h@{func.h}!drawCreditsState@{drawCreditsState}}
+\index{drawCreditsState@{drawCreditsState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{drawCreditsState()}{drawCreditsState()}}
+{\footnotesize\ttfamily \label{func_8h_a4cfa3d0c447ffa7d8bc77f7343fe210b} 
+void draw\+Credits\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Text \&}]{credits\+Text}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_acef3e820ce15591f18f0f150b2490a05}\index{func.h@{func.h}!drawMenuState@{drawMenuState}}
+\index{drawMenuState@{drawMenuState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{drawMenuState()}{drawMenuState()}}
+{\footnotesize\ttfamily \label{func_8h_acef3e820ce15591f18f0f150b2490a05} 
+void draw\+Menu\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Sprite \&}]{menu\+Background}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{menu\+Box}{, }\item[{sf\+::\+Text \&}]{start\+Button}{, }\item[{sf\+::\+Text \&}]{settings\+Button}{, }\item[{sf\+::\+Text \&}]{save\+Button}{, }\item[{sf\+::\+Text \&}]{quit\+Button}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_aa289a5b051f059d7c156efab747fbcf0}\index{func.h@{func.h}!drawPlayingState@{drawPlayingState}}
+\index{drawPlayingState@{drawPlayingState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{drawPlayingState()}{drawPlayingState()}}
+{\footnotesize\ttfamily \label{func_8h_aa289a5b051f059d7c156efab747fbcf0} 
+void draw\+Playing\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Sprite \&}]{game\+Background}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{dialogue\+Box}{, }\item[{sf\+::\+Text \&}]{dialogue1}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_a5d8f72ec5307c6ed7edb7ab56a4e3a78}\index{func.h@{func.h}!drawSaveLoadState@{drawSaveLoadState}}
+\index{drawSaveLoadState@{drawSaveLoadState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{drawSaveLoadState()}{drawSaveLoadState()}}
+{\footnotesize\ttfamily \label{func_8h_a5d8f72ec5307c6ed7edb7ab56a4e3a78} 
+void draw\+Save\+Load\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Sprite \&}]{game\+Background}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{dialogue\+Box}{, }\item[{sf\+::\+Text \&}]{save\+Progress\+Button}{, }\item[{sf\+::\+Text \&}]{load\+Progress\+Button}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_ab28c3db5a2375de9b85a309371742097}\index{func.h@{func.h}!drawSettingsState@{drawSettingsState}}
+\index{drawSettingsState@{drawSettingsState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{drawSettingsState()}{drawSettingsState()}}
+{\footnotesize\ttfamily \label{func_8h_ab28c3db5a2375de9b85a309371742097} 
+void draw\+Settings\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Sprite \&}]{game\+Background}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{dialogue\+Box}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{volume\+Slider}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{volume\+Knob}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{brightness\+Slider}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{brightness\+Knob}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_a6e4961dc5a9a6df2c93d3a8e271b520c}\index{func.h@{func.h}!handleChoiceState@{handleChoiceState}}
+\index{handleChoiceState@{handleChoiceState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{handleChoiceState()}{handleChoiceState()}}
+{\footnotesize\ttfamily \label{func_8h_a6e4961dc5a9a6df2c93d3a8e271b520c} 
+void handle\+Choice\+State (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event}{, }\item[{\mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&}]{state}{, }\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Text \&}]{choice1}{, }\item[{sf\+::\+Text \&}]{choice2}{, }\item[{std\+::vector$<$ std\+::string $>$ \&}]{dialogues1}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{structDialogueOption}{Dialogue\+Option}} $>$ \&}]{choices}{, }\item[{int \&}]{current\+Dialogue\+Index1}{, }\item[{sf\+::\+Text \&}]{dialogue1}{, }\item[{bool \&}]{is\+Character1\+Speaking}{}\end{DoxyParamCaption})}
+
+
+
+handle\+Choice\+State -\/ функция для отображения выбора 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & -\/ мониторинг действий пользователя \\
+\hline
+{\em state} & -\/ Game\+State (наш класс для хранения состояния игры), state -\/нынешнее состояние игры \\
+\hline
+{\em window} & -\/ текущее окно \\
+\hline
+{\em choice1} & -\/ текст первого выбора \\
+\hline
+{\em choice2} & -\/ текст второго выбора \\
+\hline
+{\em dialogues1} & -\/ вектор строк всех диалогов \\
+\hline
+{\em choices} & -\/ выбор \\
+\hline
+{\em current\+Dialogue\+Index1} & -\/ номер текущего диалога \\
+\hline
+{\em dialogue1} & -\/ текст на эране текущего диалога \\
+\hline
+{\em is\+Character1\+Speaking} & -\/ bool, говорит ли сейчас персонаж? \\
+\hline
+\end{DoxyParams}
+\Hypertarget{func_8h_ada6aa92039d860a0c3988754dd8fcf9a}\index{func.h@{func.h}!handleCreditsState@{handleCreditsState}}
+\index{handleCreditsState@{handleCreditsState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{handleCreditsState()}{handleCreditsState()}}
+{\footnotesize\ttfamily \label{func_8h_ada6aa92039d860a0c3988754dd8fcf9a} 
+void handle\+Credits\+State (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event}{, }\item[{\mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&}]{state}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_a17cca03ae96245c5b783dcdaaaaef1d5}\index{func.h@{func.h}!handleMenuState@{handleMenuState}}
+\index{handleMenuState@{handleMenuState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{handleMenuState()}{handleMenuState()}}
+{\footnotesize\ttfamily \label{func_8h_a17cca03ae96245c5b783dcdaaaaef1d5} 
+void handle\+Menu\+State (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event}{, }\item[{\mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&}]{state}{, }\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Text \&}]{start\+Button}{, }\item[{sf\+::\+Text \&}]{settings\+Button}{, }\item[{sf\+::\+Text \&}]{save\+Button}{, }\item[{sf\+::\+Text \&}]{quit\+Button}{}\end{DoxyParamCaption})}
+
+
+
+handle\+Menu\+State -\/ функция для отображения меню 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & -\/ мониторинг действий пользователя \\
+\hline
+{\em state} & -\/ Game\+State (наш класс для хранения состояния игры), state -\/нынешнее состояние игры \\
+\hline
+{\em window} & -\/ окно с игрой\\
+\hline
+{\em start\+Button} & -\/ текст кнопки старта\\
+\hline
+{\em settings\+Button} & -\/ текст кнопки настроек\\
+\hline
+{\em save\+Button} & -\/ текст кнопки сохранений\\
+\hline
+{\em quit\+Button} & -\/ текст кнопки выйти \\
+\hline
+\end{DoxyParams}
+\Hypertarget{func_8h_a8c7b6eebaf214a3d1a8ad1fdd430ffb6}\index{func.h@{func.h}!handlePlayingState@{handlePlayingState}}
+\index{handlePlayingState@{handlePlayingState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{handlePlayingState()}{handlePlayingState()}}
+{\footnotesize\ttfamily \label{func_8h_a8c7b6eebaf214a3d1a8ad1fdd430ffb6} 
+void handle\+Playing\+State (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event}{, }\item[{\mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&}]{state}{, }\item[{int \&}]{current\+Dialogue\+Index1}{, }\item[{std\+::vector$<$ std\+::string $>$ \&}]{dialogues1}{, }\item[{sf\+::\+Text \&}]{dialogue1}{, }\item[{bool \&}]{is\+Character1\+Speaking}{}\end{DoxyParamCaption})}
+
+
+
+handle\+Playing\+State -\/ функция для отображения игры 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & -\/ мониторинг действий пользователя \\
+\hline
+{\em state} & -\/ Game\+State (наш класс для хранения состояния игры), state -\/нынешнее состояние игры \\
+\hline
+{\em current\+Dialogue\+Index1} & -\/ номер диалога на котором игра находится в данный момент \\
+\hline
+{\em dialogues1} & -\/ вектор из строк, список всех реплик в игре \\
+\hline
+{\em dialogue1} & -\/ текущий текст на экране \\
+\hline
+{\em is\+Character1\+Speaking} & -\/ bool, говорит ли сейчас персонаж? \\
+\hline
+\end{DoxyParams}
+\Hypertarget{func_8h_aca4024e74f584ab8391de464820e3fda}\index{func.h@{func.h}!handleSaveLoadState@{handleSaveLoadState}}
+\index{handleSaveLoadState@{handleSaveLoadState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{handleSaveLoadState()}{handleSaveLoadState()}}
+{\footnotesize\ttfamily \label{func_8h_aca4024e74f584ab8391de464820e3fda} 
+void handle\+Save\+Load\+State (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event}{, }\item[{\mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&}]{state}{, }\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Text \&}]{save\+Progress\+Button}{, }\item[{sf\+::\+Text \&}]{load\+Progress\+Button}{, }\item[{int \&}]{current\+Dialogue\+Index1}{, }\item[{bool \&}]{is\+Character1\+Speaking}{, }\item[{std\+::vector$<$ std\+::string $>$ \&}]{dialogues1}{, }\item[{sf\+::\+Text \&}]{dialogue1}{}\end{DoxyParamCaption})}
+
+
+
+handle\+Save\+Load\+State -\/ функция для отображения меню сохранений 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & -\/ мониторинг действий пользователя \\
+\hline
+{\em state} & -\/ Game\+State (наш класс для хранения состояния игры), state -\/нынешнее состояние игры \\
+\hline
+{\em window} & -\/ текущее окно \\
+\hline
+{\em save\+Progress\+Button} & -\/ текст кнопки сохраниться \\
+\hline
+{\em load\+Progress\+Button} & -\/ текст кнопки загрузить прогресс \\
+\hline
+{\em current\+Dialogue\+Index1} & -\/ номер текущего диалога \\
+\hline
+{\em is\+Character1\+Speaking} & -\/ bool, говорит ли сейчас персонаж? \\
+\hline
+{\em dialogues1} & -\/ вектор строк всех диалогов \\
+\hline
+{\em dialogue1} & -\/ текст на эране текущего диалога \\
+\hline
+\end{DoxyParams}
+\Hypertarget{func_8h_ae6d85c0106e4103aa8da744d6e5f68c7}\index{func.h@{func.h}!handleSettingsState@{handleSettingsState}}
+\index{handleSettingsState@{handleSettingsState}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{handleSettingsState()}{handleSettingsState()}}
+{\footnotesize\ttfamily \label{func_8h_ae6d85c0106e4103aa8da744d6e5f68c7} 
+void handle\+Settings\+State (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event}{, }\item[{\mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&}]{state}{, }\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{sf\+::\+Music \&}]{music}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{volume\+Slider}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{brightness\+Slider}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{volume\+Knob}{, }\item[{sf\+::\+Rectangle\+Shape \&}]{brightness\+Knob}{, }\item[{sf\+::\+Sprite \&}]{game\+Background}{}\end{DoxyParamCaption})}
+
+
+
+handle\+Settings\+State -\/ функция для отображения настроек 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & -\/ мониторинг действий пользователя \\
+\hline
+{\em state} & -\/ Game\+State (наш класс для хранения состояния игры), state -\/нынешнее состояние игры \\
+\hline
+{\em window} & -\/ текущее окно \\
+\hline
+{\em music} & -\/ музыка \\
+\hline
+{\em volume\+Slider} & -\/ полоска изменения громкости \\
+\hline
+{\em brightness\+Slider} & -\/ полоска изменения яркости \\
+\hline
+{\em volume\+Knob} & -\/ слайдер изменения громкости \\
+\hline
+{\em volume\+Knob} & -\/ слайдер изменения яркости \\
+\hline
+{\em game\+Background} & -\/ фон \\
+\hline
+\end{DoxyParams}
+\Hypertarget{func_8h_ab416ae7d6f93cf5ef69257adb105bbf7}\index{func.h@{func.h}!initButtons@{initButtons}}
+\index{initButtons@{initButtons}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{initButtons()}{initButtons()}}
+{\footnotesize\ttfamily \label{func_8h_ab416ae7d6f93cf5ef69257adb105bbf7} 
+void init\+Buttons (\begin{DoxyParamCaption}\item[{sf\+::\+Text \&}]{start\+Button}{, }\item[{sf\+::\+Text \&}]{settings\+Button}{, }\item[{sf\+::\+Text \&}]{save\+Button}{, }\item[{sf\+::\+Text \&}]{quit\+Button}{, }\item[{sf\+::\+Font \&}]{font}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_a4dad2bdffed089c19a4469dc281606ec}\index{func.h@{func.h}!initChoiceBox@{initChoiceBox}}
+\index{initChoiceBox@{initChoiceBox}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{initChoiceBox()}{initChoiceBox()}}
+{\footnotesize\ttfamily \label{func_8h_a4dad2bdffed089c19a4469dc281606ec} 
+void init\+Choice\+Box (\begin{DoxyParamCaption}\item[{sf\+::\+Rectangle\+Shape \&}]{choice\+Box}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_ae4e80688935a6a2eb1728195c47e3fa2}\index{func.h@{func.h}!initSlider@{initSlider}}
+\index{initSlider@{initSlider}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{initSlider()}{initSlider()}}
+{\footnotesize\ttfamily \label{func_8h_ae4e80688935a6a2eb1728195c47e3fa2} 
+void init\+Slider (\begin{DoxyParamCaption}\item[{sf\+::\+Rectangle\+Shape \&}]{slider}{, }\item[{sf\+::\+Vector2f}]{size}{, }\item[{sf\+::\+Color}]{color}{, }\item[{sf\+::\+Vector2f}]{position}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_a3d15916d82e57beaf2ecbfd3f81ba37c}\index{func.h@{func.h}!loadProgress@{loadProgress}}
+\index{loadProgress@{loadProgress}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{loadProgress()}{loadProgress()}}
+{\footnotesize\ttfamily \label{func_8h_a3d15916d82e57beaf2ecbfd3f81ba37c} 
+void load\+Progress (\begin{DoxyParamCaption}\item[{int \&}]{dialogue\+Index1}{, }\item[{bool \&}]{is\+Character1\+Speaking}{}\end{DoxyParamCaption})}
+
+
+
+load\+Progress -\/ функция для прогружения состояния игры 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dialogue\+Index1} & -\/ int, номер диалога, на котором находится игра \\
+\hline
+{\em is\+Character1\+Speaking} & -\/ bool, говорит ли главный герой в момент сохранения? \\
+\hline
+\end{DoxyParams}
+\Hypertarget{func_8h_a550eab30b939455b9b21b966dfe8d040}\index{func.h@{func.h}!playMusic@{playMusic}}
+\index{playMusic@{playMusic}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{playMusic()}{playMusic()}}
+{\footnotesize\ttfamily \label{func_8h_a550eab30b939455b9b21b966dfe8d040} 
+void play\+Music (\begin{DoxyParamCaption}\item[{sf\+::\+Music \&}]{music}{}\end{DoxyParamCaption})}
+
+\Hypertarget{func_8h_a39bad784c4dc3ed32c06a105f9d71568}\index{func.h@{func.h}!saveProgress@{saveProgress}}
+\index{saveProgress@{saveProgress}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{saveProgress()}{saveProgress()}}
+{\footnotesize\ttfamily \label{func_8h_a39bad784c4dc3ed32c06a105f9d71568} 
+void save\+Progress (\begin{DoxyParamCaption}\item[{int}]{dialogue\+Index1}{, }\item[{bool}]{is\+Character1\+Speaking}{}\end{DoxyParamCaption})}
+
+
+
+save\+Progress -\/ функция для сохранения состояния игры 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dialogue\+Index1} & -\/ int, номер диалога, на котором находится игра \\
+\hline
+{\em is\+Character1\+Speaking} & -\/ bool, говорит ли главный герой в момент сохранения? \\
+\hline
+\end{DoxyParams}
+\Hypertarget{func_8h_a76c77530f7904ea21e57d5d3699c0c12}\index{func.h@{func.h}!skipToChoices@{skipToChoices}}
+\index{skipToChoices@{skipToChoices}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{skipToChoices()}{skipToChoices()}}
+{\footnotesize\ttfamily \label{func_8h_a76c77530f7904ea21e57d5d3699c0c12} 
+void skip\+To\+Choices (\begin{DoxyParamCaption}\item[{int \&}]{current\+Dialogue\+Index1}{, }\item[{std\+::vector$<$ std\+::string $>$ \&}]{dialogues1}{, }\item[{\mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \&}]{state}{, }\item[{sf\+::\+Text \&}]{dialogue1}{}\end{DoxyParamCaption})}
+
+
+
+skip\+To\+Choices -\/ функция для пропуска диалога до стадии выбора 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Dialogue\+Index1} & -\/ int, номер диалога, на котором находится игра в данный момент времени\\
+\hline
+{\em dialogues1} & -\/ bool, говорит ли главный герой в момент сохранения?\\
+\hline
+{\em state} & -\/ Game\+State (наш класс для хранения состояния игры), state -\/ нынешнее состояние игры\\
+\hline
+{\em dialogue1} & -\/ sf\+::\+Text(элемент namespace sf для хранения текста), dialogue1 -\/ выводимый на экран текст \\
+\hline
+\end{DoxyParams}

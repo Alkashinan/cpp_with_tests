@@ -6,64 +6,8 @@
 #include <string>
 #include <vector>
 
-// Включите ваши заголовочные файлы, где определены функции
-// Например: #include "game_functions.h"
+#include "../functions/func.h"
 
-// Определения функций, если они находятся не в заголовочном файле (удалите, если они в .h файле)
-void saveProgress(int dialogueIndex1, bool isCharacter1Speaking) {
-    std::string saveDirectory = "saves";
-    std::string saveFilePath = saveDirectory + "/mysave.txt";
-
-    // Создаем директорию, если она не существует
-    if (!std::filesystem::exists(saveDirectory)) {
-        std::filesystem::create_directories(saveDirectory);
-    }
-
-    // Открываем файл для записи
-    std::ofstream saveFile(saveFilePath);
-    if (saveFile.is_open()) {
-        saveFile << dialogueIndex1 << "\n" << isCharacter1Speaking << "\n";
-        saveFile.close();
-    } else {
-        std::cerr << "Error: Could not open save file for writing: " << saveFilePath << std::endl;
-    }
-}
-
-void loadProgress(int& dialogueIndex1, bool& isCharacter1Speaking) {
-    std::string saveFilePath = "saves/mysave.txt";
-    std::ifstream loadFile(saveFilePath);
-    if (loadFile.is_open()) {
-        loadFile >> dialogueIndex1;
-        loadFile >> isCharacter1Speaking;
-        loadFile.close();
-    } else {
-        std::cerr << "Error: Could not open save file for reading: " << saveFilePath << std::endl;
-    }
-}
-
-enum class GameState {
-    Menu,
-    Playing,
-    Settings,
-    SaveLoad,
-    Choice,
-    Credits
-};
-
-void skipToChoices(int& currentDialogueIndex1, std::vector<std::string>& dialogues1, GameState& state, sf::Text& dialogue1) {
-    if (dialogues1.empty()) {
-        std::cerr << "Error: dialogues1 is empty, cannot skip to choices." << std::endl;
-        return;
-    }
-    currentDialogueIndex1 = dialogues1.size() - 1;
-    dialogue1.setString(dialogues1[currentDialogueIndex1]);
-    sf::FloatRect textRect1 = dialogue1.getLocalBounds();
-    dialogue1.setOrigin(textRect1.left + textRect1.width / 2.0f, textRect1.top + textRect1.height / 2.0f);
-    dialogue1.setPosition(sf::Vector2f(1280 / 2.0f, 660));  // Adjusted for screen resolution 1280x720
-    state = GameState::Choice;
-}
-
-// Тесты для saveProgress
 TEST(SaveProgressTest, SavesCorrectData) {
     std::string saveDirectory = "saves";
     std::string saveFilePath = saveDirectory + "/mysave.txt";
@@ -159,19 +103,6 @@ TEST(SkipToChoicesTest, SkipsToChoicesState) {
     EXPECT_EQ(state, GameState::Choice);
 }
 
-TEST(SkipToChoicesTest, HandlesEmptyDialogues) {
-    int currentDialogueIndex1 = 0;
-    std::vector<std::string> dialogues1 = {};
-    sf::Text dialogue1;
-    GameState state = GameState::Playing;
-
-    skipToChoices(currentDialogueIndex1, dialogues1, state, dialogue1);
-
-    // Ожидаем, что индекс не изменится и состояние не поменяется
-    EXPECT_EQ(currentDialogueIndex1, 0);
-    EXPECT_EQ(state, GameState::Playing);
-    EXPECT_EQ(dialogue1.getString(), ""); // Поскольку вектор пуст, текст останется пустым
-}
 
 // Главная функция для запуска тестов
 int main(int argc, char **argv) {

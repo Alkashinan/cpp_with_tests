@@ -1,0 +1,317 @@
+\doxysection{func.\+cpp}
+\hypertarget{func_8cpp_source}{}\label{func_8cpp_source}\index{functions/func.cpp@{functions/func.cpp}}
+\mbox{\hyperlink{func_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SFML/Audio.hpp>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\ \{\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ab61541208db7fa7dba42c85224405911}{Menu}},\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ac9dbb2b7c84159b632d71e512eba8428}{Playing}},\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285af4f70727dc34561dfde1a3c529b6205c}{Settings}},\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ae6e22e45d041775a2b5ae4a11e62681a}{SaveLoad}},\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a458b9dcc0921f46b1192427426d59c10}{Choice}},\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a948a2e3548aaf7f9941a3192fa607d51}{Credits}}\ \};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDialogueOption}{DialogueOption}}\ \{}
+\DoxyCodeLine{00013\ \ \ std::string\ \mbox{\hyperlink{structDialogueOption_a4397544d02e3074abcaf21e4e2938bd4}{text}};}
+\DoxyCodeLine{00014\ \ \ std::vector<std::string>\ \mbox{\hyperlink{structDialogueOption_aa0a00c9e34e74681c65fdcf68512184e}{nextDialogues}};}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a39bad784c4dc3ed32c06a105f9d71568}{saveProgress}}(\textcolor{keywordtype}{int}\ dialogueIndex1,\ \textcolor{keywordtype}{bool}\ isCharacter1Speaking)\ \{}
+\DoxyCodeLine{00022\ \ \ std::string\ saveDirectory\ =\ \textcolor{stringliteral}{"{}saves"{}};}
+\DoxyCodeLine{00023\ \ \ std::string\ saveFilePath\ =\ saveDirectory\ +\ \textcolor{stringliteral}{"{}/mysave.txt"{}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!std::filesystem::exists(saveDirectory))\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (!std::filesystem::create\_directories(saveDirectory))\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Failed\ to\ create\ directory\ "{}}\ <<\ saveDirectory}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00030\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Directory\ "{}}\ <<\ saveDirectory\ <<\ \textcolor{stringliteral}{"{}\ created\ successfully.\(\backslash\)n"{}};}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{if}\ (std::filesystem::exists(saveDirectory))\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Directory\ exists:\ "{}}\ <<\ saveDirectory\ <<\ std::endl;}
+\DoxyCodeLine{00037\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Directory\ does\ not\ exist:\ "{}}\ <<\ saveDirectory}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ std::ofstream\ saveFile(saveFilePath);}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{if}\ (saveFile.is\_open())\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ saveFile\ <<\ dialogueIndex1\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ isCharacter1Speaking\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00046\ \ \ \ \ saveFile.close();}
+\DoxyCodeLine{00047\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Progress\ saved\ successfully\ to\ "{}}\ <<\ saveFilePath\ <<\ std::endl;}
+\DoxyCodeLine{00048\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Could\ not\ open\ save\ file\ for\ writing:\ "{}}\ <<\ saveFilePath}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a3d15916d82e57beaf2ecbfd3f81ba37c}{loadProgress}}(\textcolor{keywordtype}{int}\ \&dialogueIndex1,\ \textcolor{keywordtype}{bool}\ \&isCharacter1Speaking)\ \{}
+\DoxyCodeLine{00059\ \ \ std::ifstream\ loadFile(\textcolor{stringliteral}{"{}./saves/mysave.txt"{}});}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{if}\ (loadFile.is\_open())\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ loadFile\ >>\ dialogueIndex1;}
+\DoxyCodeLine{00062\ \ \ \ \ loadFile\ >>\ isCharacter1Speaking;}
+\DoxyCodeLine{00063\ \ \ \ \ loadFile.close();}
+\DoxyCodeLine{00064\ \ \ \}}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a76c77530f7904ea21e57d5d3699c0c12}{skipToChoices}}(\textcolor{keywordtype}{int}\ \&currentDialogueIndex1,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \&dialogues1,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\ \&state,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&dialogue1)\ \{}
+\DoxyCodeLine{00077\ \ \ currentDialogueIndex1\ =\ dialogues1.size()\ -\/\ 1;}
+\DoxyCodeLine{00078\ \ \ dialogue1.setString(dialogues1[currentDialogueIndex1]);}
+\DoxyCodeLine{00079\ \ \ sf::FloatRect\ textRect1\ =\ dialogue1.getLocalBounds();}
+\DoxyCodeLine{00080\ \ \ dialogue1.setOrigin(textRect1.left\ +\ textRect1.width\ /\ 2.0f,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textRect1.top\ +\ textRect1.height\ /\ 2.0f);}
+\DoxyCodeLine{00082\ \ \ dialogue1.setPosition(sf::Vector2f(1280\ /\ 2.0f,\ 660));}
+\DoxyCodeLine{00083\ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a458b9dcc0921f46b1192427426d59c10}{GameState::Choice}};}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a17cca03ae96245c5b783dcdaaaaef1d5}{handleMenuState}}(\textcolor{keyword}{const}\ sf::Event\ \&event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\ \&state,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RenderWindow\ \&window,\ sf::Text\ \&startButton,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&settingsButton,\ sf::Text\ \&saveButton,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&quitButton)\ \{}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::MouseButtonPressed\ \&\&}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ event.mouseButton.button\ ==\ sf::Mouse::Left)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ sf::Vector2i\ mousePos\ =\ sf::Mouse::getPosition(window);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (startButton.getGlobalBounds().contains(mousePos.x,\ mousePos.y))\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ac9dbb2b7c84159b632d71e512eba8428}{GameState::Playing}};}
+\DoxyCodeLine{00101\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (settingsButton.getGlobalBounds().contains(mousePos.x,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mousePos.y))\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285af4f70727dc34561dfde1a3c529b6205c}{GameState::Settings}};}
+\DoxyCodeLine{00104\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (saveButton.getGlobalBounds().contains(mousePos.x,\ mousePos.y))\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ae6e22e45d041775a2b5ae4a11e62681a}{GameState::SaveLoad}};}
+\DoxyCodeLine{00106\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (quitButton.getGlobalBounds().contains(mousePos.x,\ mousePos.y))\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ window.close();}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \}}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a8c7b6eebaf214a3d1a8ad1fdd430ffb6}{handlePlayingState}}(\textcolor{keyword}{const}\ sf::Event\ \&event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\ \&state,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \&currentDialogueIndex1,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \&dialogues1,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&dialogue1,\ \textcolor{keywordtype}{bool}\ \&isCharacter1Speaking)\ \{}
+\DoxyCodeLine{00123\ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::KeyPressed)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (event.key.code\ ==\ sf::Keyboard::Escape)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ab61541208db7fa7dba42c85224405911}{GameState::Menu}};}
+\DoxyCodeLine{00126\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (event.key.code\ ==\ sf::Keyboard::LControl\ ||}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ event.key.code\ ==\ sf::Keyboard::RControl)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \mbox{\hyperlink{func_8cpp_a76c77530f7904ea21e57d5d3699c0c12}{skipToChoices}}(currentDialogueIndex1,\ dialogues1,\ state,\ dialogue1);}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::MouseButtonPressed\ \&\&}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ event.mouseButton.button\ ==\ sf::Mouse::Left)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{if}\ (isCharacter1Speaking)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ currentDialogueIndex1++;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (currentDialogueIndex1\ <\ dialogues1.size())\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ dialogue1.setString(dialogues1[currentDialogueIndex1]);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ sf::FloatRect\ textRect1\ =\ dialogue1.getLocalBounds();}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ dialogue1.setOrigin(textRect1.left\ +\ textRect1.width\ /\ 2.0f,}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textRect1.top\ +\ textRect1.height\ /\ 2.0f);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ dialogue1.setPosition(sf::Vector2f(}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ 1280\ /\ 2.0f,\ 660));}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (currentDialogueIndex1\ ==\ dialogues1.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a458b9dcc0921f46b1192427426d59c10}{GameState::Choice}};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ isCharacter1Speaking\ =\ !isCharacter1Speaking;}
+\DoxyCodeLine{00148\ \ \ \}}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00161\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_ae6d85c0106e4103aa8da744d6e5f68c7}{handleSettingsState}}(\textcolor{keyword}{const}\ sf::Event\ \&event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\ \&state,}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RenderWindow\ \&window,\ sf::Music\ \&music,}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&volumeSlider,}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&brightnessSlider,}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&volumeKnob,}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&brightnessKnob,}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Sprite\ \&gameBackground)\ \{}
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::MouseButtonPressed\ \&\&}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ event.mouseButton.button\ ==\ sf::Mouse::Left)\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ sf::Vector2i\ mousePos\ =\ sf::Mouse::getPosition(window);}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (volumeSlider.getGlobalBounds().contains(mousePos.x,\ mousePos.y))\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ volume\ =\ (mousePos.x\ -\/\ volumeSlider.getPosition().x)\ /\ 2.0f;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ volume\ =\ std::max(0.0f,\ std::min(100.0f,\ volume));}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ music.setVolume(volume);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ volumeKnob.setPosition(volumeSlider.getPosition().x\ +\ volume\ *\ 2,}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ volumeKnob.getPosition().y);}
+\DoxyCodeLine{00177\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (brightnessSlider.getGlobalBounds().contains(mousePos.x,}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mousePos.y))\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ brightness\ =\ (mousePos.x\ -\/\ brightnessSlider.getPosition().x);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ brightness\ =\ std::max(0.0f,\ std::min(200.0f,\ brightness));}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ brightnessKnob.setPosition(brightnessSlider.getPosition().x\ +\ brightness,}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ brightnessKnob.getPosition().y);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ sf::Color\ color\ =\ gameBackground.getColor();}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ color.r\ =\ color.g\ =\ color.b\ =\ 255\ *\ (brightness\ /\ 200.0f);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ gameBackground.setColor(color);}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::KeyPressed\ \&\&}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ event.key.code\ ==\ sf::Keyboard::Escape)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ab61541208db7fa7dba42c85224405911}{GameState::Menu}};}
+\DoxyCodeLine{00191\ \ \ \}}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a6e4961dc5a9a6df2c93d3a8e271b520c}{handleChoiceState}}(\textcolor{keyword}{const}\ sf::Event\ \&event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\ \&state,}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RenderWindow\ \&window,\ sf::Text\ \&choice1,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&choice2,\ std::vector<std::string>\ \&dialogues1,}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<DialogueOption>\ \&choices,}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \&currentDialogueIndex1,\ sf::Text\ \&dialogue1,}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \&isCharacter1Speaking)\ \{}
+\DoxyCodeLine{00211\ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::MouseButtonPressed\ \&\&}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ event.mouseButton.button\ ==\ sf::Mouse::Left)\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ sf::Vector2i\ mousePos\ =\ sf::Mouse::getPosition(window);}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{if}\ (choice1.getGlobalBounds().contains(mousePos.x,\ mousePos.y))\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ dialogues1\ =\ choices[0].nextDialogues;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ currentDialogueIndex1\ =\ 0;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ dialogue1.setString(dialogues1[currentDialogueIndex1]);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ isCharacter1Speaking\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ac9dbb2b7c84159b632d71e512eba8428}{GameState::Playing}};}
+\DoxyCodeLine{00220\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (choice2.getGlobalBounds().contains(mousePos.x,\ mousePos.y))\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ dialogues1\ =\ choices[1].nextDialogues;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ currentDialogueIndex1\ =\ 0;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ dialogue1.setString(dialogues1[currentDialogueIndex1]);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ isCharacter1Speaking\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ac9dbb2b7c84159b632d71e512eba8428}{GameState::Playing}};}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \}}
+\DoxyCodeLine{00228\ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00240\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_aca4024e74f584ab8391de464820e3fda}{handleSaveLoadState}}(\textcolor{keyword}{const}\ sf::Event\ \&event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\ \&state,}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RenderWindow\ \&window,\ sf::Text\ \&saveProgressButton,}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&loadProgressButton,}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \&currentDialogueIndex1,\ \textcolor{keywordtype}{bool}\ \&isCharacter1Speaking,}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \&dialogues1,}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&dialogue1)\ \{}
+\DoxyCodeLine{00246\ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::MouseButtonPressed\ \&\&}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ event.mouseButton.button\ ==\ sf::Mouse::Left)\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ sf::Vector2i\ mousePos\ =\ sf::Mouse::getPosition(window);}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{if}\ (saveProgressButton.getGlobalBounds().contains(mousePos.x,\ mousePos.y))\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \mbox{\hyperlink{func_8cpp_a39bad784c4dc3ed32c06a105f9d71568}{saveProgress}}(currentDialogueIndex1,\ isCharacter1Speaking);}
+\DoxyCodeLine{00251\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loadProgressButton.getGlobalBounds().contains(mousePos.x,}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mousePos.y))\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \mbox{\hyperlink{func_8cpp_a3d15916d82e57beaf2ecbfd3f81ba37c}{loadProgress}}(currentDialogueIndex1,\ isCharacter1Speaking);}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ dialogue1.setString(dialogues1[currentDialogueIndex1]);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ac9dbb2b7c84159b632d71e512eba8428}{GameState::Playing}};}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::KeyPressed\ \&\&}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ event.key.code\ ==\ sf::Keyboard::Escape)\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ab61541208db7fa7dba42c85224405911}{GameState::Menu}};}
+\DoxyCodeLine{00260\ \ \ \}}
+\DoxyCodeLine{00261\ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_acef3e820ce15591f18f0f150b2490a05}{drawMenuState}}(sf::RenderWindow\ \&window,\ sf::Sprite\ \&menuBackground,}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&menuBox,\ sf::Text\ \&startButton,}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&settingsButton,\ sf::Text\ \&saveButton,}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&quitButton)\ \{}
+\DoxyCodeLine{00267\ \ \ window.draw(menuBackground);}
+\DoxyCodeLine{00268\ \ \ window.draw(menuBox);}
+\DoxyCodeLine{00269\ \ \ window.draw(startButton);}
+\DoxyCodeLine{00270\ \ \ window.draw(settingsButton);}
+\DoxyCodeLine{00271\ \ \ window.draw(saveButton);}
+\DoxyCodeLine{00272\ \ \ window.draw(quitButton);}
+\DoxyCodeLine{00273\ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_aa289a5b051f059d7c156efab747fbcf0}{drawPlayingState}}(sf::RenderWindow\ \&window,\ sf::Sprite\ \&gameBackground,}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&dialogueBox,\ sf::Text\ \&dialogue1)\ \{}
+\DoxyCodeLine{00277\ \ \ window.draw(gameBackground);}
+\DoxyCodeLine{00278\ \ \ window.draw(dialogueBox);}
+\DoxyCodeLine{00279\ \ \ window.draw(dialogue1);}
+\DoxyCodeLine{00280\ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_ab28c3db5a2375de9b85a309371742097}{drawSettingsState}}(sf::RenderWindow\ \&window,\ sf::Sprite\ \&gameBackground,}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&dialogueBox,}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&volumeSlider,}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&volumeKnob,}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&brightnessSlider,}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&brightnessKnob)\ \{}
+\DoxyCodeLine{00288\ \ \ window.draw(gameBackground);}
+\DoxyCodeLine{00289\ \ \ window.draw(dialogueBox);}
+\DoxyCodeLine{00290\ \ \ window.draw(volumeSlider);}
+\DoxyCodeLine{00291\ \ \ window.draw(volumeKnob);}
+\DoxyCodeLine{00292\ \ \ window.draw(brightnessSlider);}
+\DoxyCodeLine{00293\ \ \ window.draw(brightnessKnob);}
+\DoxyCodeLine{00294\ \}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a5d8f72ec5307c6ed7edb7ab56a4e3a78}{drawSaveLoadState}}(sf::RenderWindow\ \&window,\ sf::Sprite\ \&gameBackground,}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&dialogueBox,}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&saveProgressButton,}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&loadProgressButton)\ \{}
+\DoxyCodeLine{00300\ \ \ window.draw(gameBackground);}
+\DoxyCodeLine{00301\ \ \ window.draw(dialogueBox);}
+\DoxyCodeLine{00302\ \ \ window.draw(saveProgressButton);}
+\DoxyCodeLine{00303\ \ \ window.draw(loadProgressButton);}
+\DoxyCodeLine{00304\ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a7fd8be2b5a0e54761943be8fa5a91563}{drawChoiceState}}(sf::RenderWindow\ \&window,\ sf::Sprite\ \&gameBackground,}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::RectangleShape\ \&choiceBox,\ sf::Text\ \&choice1,}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&choice2)\ \{}
+\DoxyCodeLine{00309\ \ \ window.draw(gameBackground);}
+\DoxyCodeLine{00310\ \ \ window.draw(choiceBox);}
+\DoxyCodeLine{00311\ \ \ window.draw(choice1);}
+\DoxyCodeLine{00312\ \ \ window.draw(choice2);}
+\DoxyCodeLine{00313\ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_ab416ae7d6f93cf5ef69257adb105bbf7}{initButtons}}(sf::Text\ \&startButton,\ sf::Text\ \&settingsButton,}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Text\ \&saveButton,\ sf::Text\ \&quitButton,\ sf::Font\ \&font)\ \{}
+\DoxyCodeLine{00317\ \ \ startButton.setFont(font);}
+\DoxyCodeLine{00318\ \ \ settingsButton.setFont(font);}
+\DoxyCodeLine{00319\ \ \ saveButton.setFont(font);}
+\DoxyCodeLine{00320\ \ \ quitButton.setFont(font);}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ startButton.setString(\textcolor{stringliteral}{"{}START"{}});}
+\DoxyCodeLine{00323\ \ \ settingsButton.setString(\textcolor{stringliteral}{"{}SETTINGS"{}});}
+\DoxyCodeLine{00324\ \ \ saveButton.setString(\textcolor{stringliteral}{"{}SAVES"{}});}
+\DoxyCodeLine{00325\ \ \ quitButton.setString(\textcolor{stringliteral}{"{}QUIT"{}});}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ startButton.setCharacterSize(24);}
+\DoxyCodeLine{00328\ \ \ settingsButton.setCharacterSize(24);}
+\DoxyCodeLine{00329\ \ \ saveButton.setCharacterSize(24);}
+\DoxyCodeLine{00330\ \ \ quitButton.setCharacterSize(24);}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ startButton.setPosition(}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ 540,\ 300);\ \textcolor{comment}{//\ Adjusted\ positions\ for\ screen\ resolution\ 1280x720}}
+\DoxyCodeLine{00334\ \ \ settingsButton.setPosition(540,\ 350);}
+\DoxyCodeLine{00335\ \ \ saveButton.setPosition(540,\ 400);}
+\DoxyCodeLine{00336\ \ \ quitButton.setPosition(540,\ 450);}
+\DoxyCodeLine{00337\ \}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_ae4e80688935a6a2eb1728195c47e3fa2}{initSlider}}(sf::RectangleShape\ \&slider,\ sf::Vector2f\ size,\ sf::Color\ color,}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ position)\ \{}
+\DoxyCodeLine{00341\ \ \ slider.setSize(size);}
+\DoxyCodeLine{00342\ \ \ slider.setFillColor(color);}
+\DoxyCodeLine{00343\ \ \ slider.setPosition(position);}
+\DoxyCodeLine{00344\ \}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a4dad2bdffed089c19a4469dc281606ec}{initChoiceBox}}(sf::RectangleShape\ \&choiceBox)\ \{}
+\DoxyCodeLine{00347\ \ \ choiceBox.setSize(sf::Vector2f(400,\ 150));}
+\DoxyCodeLine{00348\ \ \ choiceBox.setFillColor(sf::Color(0,\ 0,\ 0,\ 150));}
+\DoxyCodeLine{00349\ \ \ choiceBox.setPosition(440,\ 275);\ \textcolor{comment}{//\ Adjusted\ for\ screen\ resolution\ 1280x720}}
+\DoxyCodeLine{00350\ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a550eab30b939455b9b21b966dfe8d040}{playMusic}}(sf::Music\ \&music)\ \{}
+\DoxyCodeLine{00353\ \ \ \textcolor{keywordflow}{if}\ (!music.openFromFile(\textcolor{stringliteral}{"{}../assets/01.Hollywood.mp3"{}}))\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00355\ \ \ \}}
+\DoxyCodeLine{00356\ \ \ music.setLoop(\textcolor{keyword}{true});}
+\DoxyCodeLine{00357\ \ \ music.play();}
+\DoxyCodeLine{00358\ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_ada6aa92039d860a0c3988754dd8fcf9a}{handleCreditsState}}(\textcolor{keyword}{const}\ sf::Event\ \&event,\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{GameState}}\ \&state)\ \{}
+\DoxyCodeLine{00361\ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::KeyPressed\ \&\&}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ event.key.code\ ==\ sf::Keyboard::Escape)\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ state\ =\ \mbox{\hyperlink{func_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ab61541208db7fa7dba42c85224405911}{GameState::Menu}};}
+\DoxyCodeLine{00364\ \ \ \}}
+\DoxyCodeLine{00365\ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8cpp_a4cfa3d0c447ffa7d8bc77f7343fe210b}{drawCreditsState}}(sf::RenderWindow\ \&window,\ sf::Text\ \&creditsText)\ \{}
+\DoxyCodeLine{00368\ \ \ window.clear(sf::Color::Black);}
+\DoxyCodeLine{00369\ \ \ window.draw(creditsText);}
+\DoxyCodeLine{00370\ \}}
+
+\end{DoxyCode}
